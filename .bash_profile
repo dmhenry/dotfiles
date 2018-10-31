@@ -19,7 +19,7 @@ if type nvim > /dev/null 2>&1; then
   export VISUAL=/usr/local/bin/nvim
   export EDITOR="$VISUAL"
   export VIMCONFIG="$HOME/.config/nvim"
-  export VIMDATA="$HOME/.local/share/nim"
+  export VIMDATA="$HOME/.local/share/nvim"
   export MYVIMRC="$VIMCONFIG/init.vim"
 fi
 
