@@ -1,0 +1,4 @@
+" display relative line numbers from current absolute line number
+set number relativenumber
+" emulates vim-surround plugin
+set surround
