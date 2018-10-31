@@ -5,9 +5,9 @@ shopt -s cdable_vars  # treat non-directory cd arguments as variables
 
 alias ll="ls --color=auto -alF $@"
 
-# 
-# https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-# https://news.ycombinator.com/item?id=11071754
+# Use special bare repo for dotfiles in git. See:
+#   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+#   https://news.ycombinator.com/item?id=11071754
 config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # source bash completion files
