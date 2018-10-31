@@ -60,7 +60,7 @@ set shell=/usr/local/bin/bash\ --rcfile\ ~/.bash_profile
 
 " change right margin column color
 highlight ColorColumn ctermbg=darkgray
-color dracula        " dracula colorscheme
+color dracula         " dracula colorscheme
 
 " enable rainbow parentheses
 let g:rainbow_active=1
