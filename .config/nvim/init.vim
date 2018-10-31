@@ -43,14 +43,14 @@ command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 "-------------------------------------------------------------------------------
 " Dave's NeoVim preferences
 "-------------------------------------------------------------------------------
-set tabstop=2	       " number of spaces occupied by a <Tab>
-set shiftwidth=2	   " number of spaces to indent/outdent using > or <
-set softtabstop=2    " delete expanded spaces as tabs
-set expandtab 		   " expand tabs to spaces
-set hidden           " allows modified buffers to be hidden w/o saving
-set mouse=a          " enable mouse for all modes
-set history=200      " more command line and search history
-set colorcolumn=81   " right gutter
+set tabstop=2         " number of spaces occupied by a <Tab>
+set shiftwidth=2      " number of spaces to indent/outdent using > or <
+set softtabstop=2     " delete expanded spaces as tabs
+set expandtab         " expand tabs to spaces
+set hidden            " allows modified buffers to be hidden w/o saving
+set mouse=a           " enable mouse for all modes
+set history=200       " more command line and search history
+set colorcolumn=81    " right gutter
 
 " display relative line numbers from current absolute line number
 set number relativenumber
