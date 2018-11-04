@@ -50,7 +50,7 @@ set expandtab         " expand tabs to spaces
 set hidden            " allows modified buffers to be hidden w/o saving
 set mouse=a           " enable mouse for all modes
 set history=200       " more command line and search history
-set colorcolumn=121   " right gutter
+set colorcolumn=81    " right gutter
 
 " display relative line numbers from current absolute line number
 set number relativenumber
