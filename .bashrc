@@ -8,7 +8,7 @@ alias ll="ls --color=auto -alF $@"
 # Use special bare repo for dotfiles in git. See:
 #   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 #   https://news.ycombinator.com/item?id=11071754
-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # source bash completion files
 if type brew > /dev/null 2>&1; then
@@ -22,9 +22,6 @@ if type nvim > /dev/null 2>&1; then
   alias vi=nvim
   alias vim=nvim
 fi
-
-# jEnv
-eval "$(jenv init -)"
 
 # Git prompt
 PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
