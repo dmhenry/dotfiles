@@ -1,5 +1,4 @@
 export JAVA_HOME="/Library/Java/Home"
-# unset _JAVA_OPTIONS when using jenv add
 export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
 export M2_HOME=/usr/local/opt/maven/libexec
 export GRADLE_HOME=/usr/local/opt/gradle/libexec
