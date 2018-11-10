@@ -1,3 +1,9 @@
+# Bash options
+set -o physical
+set -o noclobber      # do not overwrite existing files with >
+shopt -s autocd       # cd into paths on the command line 
+shopt -s cdable_vars  # treat non-directory cd arguments as variables
+
 export JAVA_HOME="/Library/Java/Home"
 export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
 export M2_HOME=/usr/local/opt/maven/libexec
@@ -20,10 +26,25 @@ if type nvim > /dev/null 2>&1; then
   export VIMCONFIG="$HOME/.config/nvim"
   export VIMDATA="$HOME/.local/share/nvim"
   export MYVIMRC="$VIMCONFIG/init.vim"
+  alias vi=nvim
+  alias vim=nvim
 fi
 
 # Git
 export GIT_PS1_SHOWDIRTYSTATE=1
+PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
+
+# Use special bare repo for dotfiles in git. See:
+#   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+#   https://news.ycombinator.com/item?id=11071754
+alias config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Homebrew
+if type brew > /dev/null 2>&1; then
+  for completion_file in $(/usr/local/bin/brew --prefix)/etc/bash_completion.d/*; do
+    source "$completion_file"
+  done
+fi
 
 # My environment variables
 export dev="$HOME/Development"
@@ -32,5 +53,3 @@ export sicp="$dev/SICP/sicp"
 # pull in Enterprise stuff
 [[ -f ~/.bash_enterprise ]] && source ~/.bash_enterprise
 
-# source .bashrc
-[[ -f ~/.bashrc ]] && source ~/.bashrc
