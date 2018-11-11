@@ -3,7 +3,7 @@
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
   (when (< emacs-major-version 24)
     ;; For important compatibility libraries like cl-lib
@@ -18,8 +18,8 @@
  '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
- '(package-selected-packages (quote (dracula-theme))))
+    ("aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
+ '(package-selected-packages (quote (racket-mode dracula-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,3 +31,10 @@
 	     '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist
 	     '(ns-appearance . dark)) ;; or light - depending on your theme
+
+;; tab performs completion in addition to indent (default completion is M-C-i)
+(setq tab-always-indent 'complete)
+
+;; Racket mode
+(require 'racket-mode)
+(setq racket-program "/usr/local/bin/racket")
