@@ -30,6 +30,8 @@ if type nvim > /dev/null 2>&1; then
   alias vim=nvim
 fi
 
+alias ll="ls --color=auto -alF $@"
+
 # Git
 export GIT_PS1_SHOWDIRTYSTATE=1
 PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
