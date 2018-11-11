@@ -19,7 +19,7 @@
  '(custom-safe-themes
    (quote
     ("aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" "617341f1be9e584692e4f01821716a0b6326baaec1749e15d88f6cc11c288ec6" default)))
- '(package-selected-packages (quote (racket-mode dracula-theme))))
+ '(package-selected-packages (quote (rainbow-delimiters racket-mode dracula-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,3 +38,7 @@
 ;; Racket mode
 (require 'racket-mode)
 (setq racket-program "/usr/local/bin/racket")
+
+;; Rainbow delimiters -- most programming modes
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
