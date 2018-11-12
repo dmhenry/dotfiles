@@ -105,7 +105,7 @@ tags
 # Persistent undo
 [._]*.un~
 
-# Emacs
+# EMACS
 # https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
 
 # -*- mode: gitignore; -*-
