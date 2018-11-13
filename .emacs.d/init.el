@@ -29,10 +29,12 @@
  ;; If there is more than one, they won't work right.
  )
 
-(add-to-list 'default-frame-alist
-	     '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist
-	     '(ns-appearance . dark)) ;; or light - depending on your theme
+;; initial frame changes
+(setq default-frame-alist
+      '((fullscreen . fullheight)
+        (width . 99)
+        (ns-transparent-titlebar . t)
+        (ns-appearance . dark)))
 
 ;; tab performs completion in addition to indent (default completion is M-C-i)
 (setq tab-always-indent 'complete)
@@ -41,8 +43,10 @@
 (require 'racket-mode)
 (setq racket-program "/usr/local/bin/racket")
 
+;; rainbow delimiters for all programming modes
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+;; balance pairs for all programming modes
 (require 'smartparens-config)
 (add-hook 'prog-mode-hook #'smartparens-mode)
