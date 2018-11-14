@@ -23,6 +23,8 @@ if exists('*minpac#init')
   call minpac#add('tpope/vim-surround')
   " toggle line comments
   call minpac#add('tpope/vim-commentary')
+  " pairs of handy bracket mappings
+  call minpac#add('tpope/vim-unimpaired')
   " repeat support for plugins
   call minpac#add('tpope/vim-repeat')
   " dracula colorscheme
