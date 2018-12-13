@@ -50,7 +50,7 @@ fi
 
 # My environment variables
 export dev="$HOME/Development"
-export sicp="$dev/SICP/sicp"
+export sicp="$dev/SICP/sicp/ch1"
 
 # pull in Enterprise stuff
 [[ -f ~/.bash_enterprise ]] && source ~/.bash_enterprise
