@@ -1,10 +1,8 @@
-# Bash options
-set -o physical
 set -o noclobber      # do not overwrite existing files with >
 shopt -s autocd       # cd into paths on the command line 
 shopt -s cdable_vars  # treat non-directory cd arguments as variables
 
-export JAVA_HOME="/Library/Java/Home"
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
 export M2_HOME=/usr/local/opt/maven/libexec
 export GRADLE_HOME=/usr/local/opt/gradle/libexec
