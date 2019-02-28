@@ -29,6 +29,11 @@ if type nvim > /dev/null 2>&1; then
   alias vim=nvim
 fi
 
+# IPython
+if type nvim > /dev/null 2>&1; then
+  export IPYTHONCONFIG="$HOME/.ipython/profile_default/ipython_config.py"
+fi
+
 alias ll="ls --color=auto -alF $@"
 
 # Git
