@@ -59,7 +59,9 @@ PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
 # Use special bare repo for dotfiles in git. See:
 #   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 #   https://news.ycombinator.com/item?id=11071754
-alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+if type git > /dev/null 2>&1; then
+  alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+fi
 
 # Homebrew
 if type brew > /dev/null 2>&1; then
