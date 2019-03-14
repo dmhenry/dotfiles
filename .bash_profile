@@ -30,11 +30,19 @@ fi
 # Set pyenv compiler & linker flags
 pyenv() {
   if [[ $1 == "install" ]]; then
-    command export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
-    command export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
-    command export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
+    TEMP_LDFLAGS="$LDFLAGS"
+    TEMP_CPPFLAGS="$CPPFLAGS"
+    TEMP_PKG_CONFIG_PATH="$PKG_CONFIG_PATH"
+    export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+    export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
+    command pyenv $@
+    export LDFLAGS="$TEMP_LDFLAGS"
+    export CPPFLAGS="$TEMP_CPPFLAGS"
+    export PKG_CONFIG_PATH="$TEMP_PKG_CONFIG_PATH"
+  else
+    command pyenv $@
   fi
-  command pyenv $@
 }
 
 # IPython
