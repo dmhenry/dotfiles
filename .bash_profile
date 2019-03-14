@@ -15,7 +15,6 @@ export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPAT
 export SHELL=/usr/local/bin/bash
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export PKG_CONFIG_PATH='/usr/local/opt/libxml2/lib/pkgconfig pkg-config --cflags glib-2.0 libcurl libxml-2.0 sqlite3'
 
 # NeoVim
 if type nvim > /dev/null 2>&1; then
@@ -28,12 +27,22 @@ if type nvim > /dev/null 2>&1; then
   alias vim=nvim
 fi
 
+# Set pyenv compiler & linker flags
+pyenv() {
+  if [[ $1 == "install" ]]; then
+    command export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+    command export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+    command export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
+  fi
+  command pyenv $@
+}
+
 # IPython
 if type nvim > /dev/null 2>&1; then
   export IPYTHONCONFIG="$HOME/.ipython/profile_default/ipython_config.py"
 fi
 
-alias ll="ls --color=auto -alF $@"
+alias ll="command ls --color=auto -alF $@"
 
 # Git
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -42,7 +51,7 @@ PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
 # Use special bare repo for dotfiles in git. See:
 #   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 #   https://news.ycombinator.com/item?id=11071754
-alias cfg='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Homebrew
 if type brew > /dev/null 2>&1; then
