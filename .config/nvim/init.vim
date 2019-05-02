@@ -47,7 +47,7 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 " Dave's NeoVim preferences
 "-------------------------------------------------------------------------------
 
-let mapleader = "\<Space>"  " Vim default leader
+let mapleader = "\<Space>"
 
 " quickly open this file
 nnoremap <Leader>ev :split $MYVIMRC<Cr>
