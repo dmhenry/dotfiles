@@ -41,10 +41,19 @@ endif
 " information of plugins, then performs the task.
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 "-------------------------------------------------------------------------------
 " Dave's NeoVim preferences
 "-------------------------------------------------------------------------------
+
+let mapleader = "\<Space>"  " Vim default leader
+
+" quickly open this file
+nnoremap <Leader>ev :split $MYVIMRC<Cr>
+" quickly source this file
+nnoremap <Leader>sv :source $MYVIMRC<Cr>
+
 set tabstop=2         " number of spaces occupied by a <Tab>
 set shiftwidth=2      " number of spaces to indent/outdent using > or <
 set softtabstop=2     " delete expanded spaces as tabs
@@ -60,6 +69,10 @@ set number relativenumber
 " use Homebrew bash from vim & source my .bash_profile
 set shell=/usr/local/bin/bash\ --rcfile\ ~/.bash_profile
 
+" open vertical splits to the right, horizontal splits below
+set splitbelow
+set splitright
+
 " change right margin column color
 highlight ColorColumn ctermbg=darkgray
 color dracula         " dracula colorscheme
@@ -67,6 +80,14 @@ color dracula         " dracula colorscheme
 " enable rainbow parentheses
 let g:rainbow_active=1
 
-" <Esc> clears last search highlight in normal mode
-:nnoremap <esc> :nohlsearch<cr><esc>
+" LOOK & FEEL
 
+set title             " display filename & path as title
+
+" SEARCH
+
+" <Esc> clears last search highlight in normal mode
+:nnoremap <Esc> :nohlsearch<Cr><Esc>
+
+set ignorecase        " ignore case when searching
+set smartcase         " unless a captial letter is entered
