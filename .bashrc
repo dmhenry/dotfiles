@@ -8,13 +8,23 @@ export M2_HOME=/usr/local/opt/maven/libexec
 export GRADLE_HOME=/usr/local/opt/gradle/libexec
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export CATALINA_HOME=/usr/local/opt/tomcat/libexec
+export PYENV_ROOT="$HOME/.pyenv"
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH="$HOME/go"
-export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:$HOME/bin:$PATH:/usr/local/sbin:$GOPATH/bin:$GOROOT/bin"
+export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:$HOME/bin:$PATH:/usr/local/sbin:$PYENV_ROOT/bin:$GOPATH/bin:$GOROOT/bin"
 export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export SHELL=/usr/local/bin/bash
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+alias ll="command ls --color=auto -alF $@"
+
+# Homebrew
+if type brew > /dev/null 2>&1; then
+  for completion_file in $(/usr/local/bin/brew --prefix)/etc/bash_completion.d/*; do
+    source "$completion_file"
+  done
+fi
 
 # NeoVim
 if type nvim > /dev/null 2>&1; then
@@ -27,10 +37,20 @@ if type nvim > /dev/null 2>&1; then
   alias vim=nvim
 fi
 
-# Initiate pyenv
-if type pipenv > /dev/null 2>&1; then
-  eval "$(pyenv init -)"
+# Git
+export GIT_PS1_SHOWDIRTYSTATE=1
+PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
+
+# Use special bare repo for dotfiles in git. See:
+#   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+#   https://news.ycombinator.com/item?id=11071754
+if type git > /dev/null 2>&1; then
+  alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
+
+# My environment variables
+export dev="$HOME/Development"
+export sicp="$dev/SICP/sicp/ch1"
 
 # Set pyenv compiler & linker flags
 if type pyenv > /dev/null 2>&1; then
@@ -44,29 +64,10 @@ if type nvim > /dev/null 2>&1; then
   export IPYTHONCONFIG="$HOME/.ipython/profile_default/ipython_config.py"
 fi
 
-alias ll="command ls --color=auto -alF $@"
-
-# Git
-export GIT_PS1_SHOWDIRTYSTATE=1
-PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
-
-# Use special bare repo for dotfiles in git. See:
-#   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-#   https://news.ycombinator.com/item?id=11071754
-if type git > /dev/null 2>&1; then
-  alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# Initiate pyenv
+if type pipenv > /dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
-
-# Homebrew
-if type brew > /dev/null 2>&1; then
-  for completion_file in $(/usr/local/bin/brew --prefix)/etc/bash_completion.d/*; do
-    source "$completion_file"
-  done
-fi
-
-# My environment variables
-export dev="$HOME/Development"
-export sicp="$dev/SICP/sicp/ch1"
 
 # pull in Enterprise stuff
 [[ -f ~/.bash_enterprise ]] && source ~/.bash_enterprise
