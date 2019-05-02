@@ -1,6 +1,6 @@
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " minpac config
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " For a paranoia.
 " Normally `:set nocp` is not needed, because it is done automatically
 " when .vimrc is found.
@@ -47,13 +47,13 @@ command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
-"-------------------------------------------------------------------------------
-" plugin config
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+" plugin configs
+"------------------------------------------------------------------------------
 
 " enable rainbow parentheses
-let g:rainbow_active=1
-
-" automatically dispay all buffers when only one tab is open
+let g:rainbow_active = 1
+" enable powerline symbols - requires terminal to use a patched powerline font
+let g:airline_powerline_fonts = 1
+" dispay buffers in tabline
 let g:airline#extensions#tabline#enabled = 1
-
