@@ -52,21 +52,17 @@ fi
 export dev="$HOME/Development"
 export sicp="$dev/SICP/sicp/ch1"
 
-# Set pyenv compiler & linker flags
-if type pyenv > /dev/null 2>&1; then
-  export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
-  export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
-  export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
-fi
-
 # IPython
 if type nvim > /dev/null 2>&1; then
   export IPYTHONCONFIG="$HOME/.ipython/profile_default/ipython_config.py"
 fi
 
-# Initiate pyenv
-if type pipenv > /dev/null 2>&1; then
+# Initiate pyenv; set compiler & linker flags
+if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+  export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+  export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+  export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
 fi
 
 # pull in Enterprise stuff
