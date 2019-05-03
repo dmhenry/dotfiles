@@ -2,15 +2,6 @@
 " Dave's NeoVim Preferences
 "------------------------------------------------------------------------------
 
-let mapleader = "\<Space>"
-
-" Quickly open init.vim
-nnoremap <Leader>ev :split $MYVIMRC<Cr>
-" Quickly open general.vim
-nnoremap <Leader>egv :split $VIMCONFIG/general.vim<Cr>
-" Quickly source init.vim
-nnoremap <Leader>sv :source $MYVIMRC<Cr>
-
 set tabstop=4         " Number of spaces occupied by a <Tab>
 set shiftwidth=4      " Number of spaces to indent/outdent using > or <
 set softtabstop=4     " Delete expanded spaces as tabs
@@ -33,9 +24,6 @@ set splitright
 " Change right margin column color
 highlight ColorColumn ctermbg=darkgray
 color dracula         " dracula colorscheme
-
-" <Esc> clears last search highlight in normal mode
-:nnoremap <Esc> :nohlsearch<Cr><Esc>
 
 set ignorecase        " Ignore case when searching
 set smartcase         " Unless a captial letter is entered

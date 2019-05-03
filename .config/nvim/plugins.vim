@@ -37,5 +37,20 @@ let g:rainbow_active = 1
 let g:airline_powerline_fonts = 1
 " Dispay buffers in tabline
 let g:airline#extensions#tabline#enabled = 1
-" Enable deoplete
-let g:deoplete#enable_at_startup = 1
+
+" Open NERDTree when nvim is opened on a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+    \ | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Open NERDTree when nvim is invoked with no files
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Close nvim if NERDTree is the only window left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Close NERDTree upon opening a file
+let NERDTreeQuitOnOpen = 1
+" Delete the buffer of a deleted file
+let NERDTreeAutoDeleteBuffer = 1
