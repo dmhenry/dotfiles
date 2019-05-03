@@ -1,59 +1,41 @@
 "------------------------------------------------------------------------------
-" minpac config
-"------------------------------------------------------------------------------
-" For a paranoia.
-" Normally `:set nocp` is not needed, because it is done automatically
-" when .vimrc is found.
-if &compatible
-  " `:set nocp` has many side effects. Therefore this should be done
-  " only when 'compatible' is set.
-  set nocompatible
-endif
-
-if exists('*minpac#init')
-  " minpac is loaded.
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  " Additional plugins here.
-
-  " toggle relative numbers for normal mode; absolute for insert mode
-  call minpac#add('tpope/vim-surround')
-  " toggle line comments
-  call minpac#add('tpope/vim-commentary')
-  " pairs of handy bracket mappings
-  call minpac#add('tpope/vim-unimpaired')
-  " repeat support for plugins
-  call minpac#add('tpope/vim-repeat')
-  " dracula colorscheme
-  call minpac#add('dracula/vim')
-  " rainbow parentheses
-  call minpac#add('luochen1990/rainbow')
-  " syntax checker
-  call minpac#add('vim-syntastic/syntastic')
-  " file system explorer 
-  call minpac#add('scrooloose/nerdtree')
-  " status line
-  call minpac#add('vim-airline/vim-airline')
-endif
-
-" Plugin settings here.
-" ...
-
-" Define user commands for updating/cleaning the plugins.
-" Each of them loads minpac, reloads .vimrc to register the
-" information of plugins, then performs the task.
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
-
-"------------------------------------------------------------------------------
-" plugin configs
+" Vim-Plug Configuration
 "------------------------------------------------------------------------------
 
-" enable rainbow parentheses
+" Install vim-plug
+" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Toggle relative numbers for normal mode; absolute for insert mode
+Plug 'tpope/vim-surround'
+" Toggle line comments
+Plug 'tpope/vim-commentary'
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
+" Repeat support for plugins
+Plug 'tpope/vim-repeat'
+" Dracula colorscheme
+Plug 'dracula/vim'
+" Rainbow parentheses
+Plug 'luochen1990/rainbow'
+" Status line
+Plug 'vim-airline/vim-airline'
+" File system explorer 
+Plug 'scrooloose/nerdtree'
+
+call plug#end()
+
+"------------------------------------------------------------------------------
+" Plugin Configuration
+"------------------------------------------------------------------------------
+
+" Enable rainbow parentheses
 let g:rainbow_active = 1
-" enable powerline symbols - requires terminal to use a patched powerline font
+" Enable powerline symbols - requires terminal to use a patched powerline font
 let g:airline_powerline_fonts = 1
-" dispay buffers in tabline
+" Dispay buffers in tabline
 let g:airline#extensions#tabline#enabled = 1
+" Enable deoplete
+let g:deoplete#enable_at_startup = 1
