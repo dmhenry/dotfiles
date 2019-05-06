@@ -1,5 +1,5 @@
 "------------------------------------------------------------------------------
-" Dave's NeoVim Preferences
+" General Preferences
 "------------------------------------------------------------------------------
 
 set tabstop=4         " Number of spaces occupied by a <Tab>
@@ -23,7 +23,7 @@ set splitright
 
 " Change right margin column color
 highlight ColorColumn ctermbg=darkgray
-color dracula         " dracula colorscheme
+colorscheme dracula
 
 set ignorecase        " Ignore case when searching
 set smartcase         " Unless a captial letter is entered

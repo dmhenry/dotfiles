@@ -1,3 +1,3 @@
 source $VIMCONFIG/plugins.vim
-source $VIMCONFIG/keys.vim
+source $VIMCONFIG/mappings.vim
 source $VIMCONFIG/general.vim
