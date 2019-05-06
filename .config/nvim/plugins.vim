@@ -24,8 +24,8 @@ Plug 'luochen1990/rainbow'
 Plug 'vim-airline/vim-airline'
 " File system explorer 
 Plug 'scrooloose/nerdtree'
-" Visual marks
-Plug 'kshenoy/vim-signature'
+" Code completion engine
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 
 call plug#end()
 
