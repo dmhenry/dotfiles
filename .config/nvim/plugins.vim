@@ -8,7 +8,7 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Toggle relative numbers for normal mode; absolute for insert mode
+" Easily manipulate pairs of parentheses, brackets, quotes, etc.
 Plug 'tpope/vim-surround'
 " Toggle line comments
 Plug 'tpope/vim-commentary'
@@ -17,7 +17,7 @@ Plug 'tpope/vim-unimpaired'
 " Repeat support for plugins
 Plug 'tpope/vim-repeat'
 " Dracula colorscheme
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
 " Code completion engine
