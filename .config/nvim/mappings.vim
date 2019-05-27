@@ -13,3 +13,12 @@ nnoremap <esc> :nohlsearch<cr><esc>
 
 " Expand current directory from command line mod
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+if has('nvim')
+    " Esc switches from terminal mode back to normal mode
+    tnoremap <esc> <c-\><c-n>
+    " Send Esc in terminal mode by prefixing
+    tnoremap <c-v><esc> <esc>
+    " Highlight terminal cursor position when in normal mode
+    highlight! TermCursorNC guibg=green guifg=white ctermbg=green ctermfg=white
+endif
