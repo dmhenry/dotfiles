@@ -53,7 +53,7 @@ export dev="$HOME/Development"
 export sicp="$dev/SICP/sicp/ch1"
 
 # IPython
-if type nvim > /dev/null 2>&1; then
+if type ipython > /dev/null 2>&1; then
     export IPYTHONCONFIG="$HOME/.ipython/profile_default/ipython_config.py"
 fi
 
