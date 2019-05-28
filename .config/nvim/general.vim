@@ -27,3 +27,8 @@ colorscheme dracula
 
 set ignorecase        " Ignore case when searching
 set smartcase         " Unless a captial letter is entered
+
+augroup TerminalPreferences
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
