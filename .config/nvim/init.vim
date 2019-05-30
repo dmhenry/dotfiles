@@ -19,6 +19,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 " Dracula colorscheme
 Plug 'dracula/vim', { 'as': 'dracula' }
+" Solarized8 colorscheme
+Plug 'lifepillar/vim-solarized8'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
 " Code completion engine
@@ -27,7 +29,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 call plug#end()
 
 " Enable rainbow parentheses
-let g:rainbow_active = 1
+let g:rainbow_active=1
 " }}}
 
 "------------------------------------------------------------------------------
@@ -51,6 +53,8 @@ set splitright
 highlight ColorColumn ctermbg=darkgray
 colorscheme dracula
 
+set termguicolors     " 24-bit color from terminal 
+
 set ignorecase        " Ignore case when searching
 set smartcase         " Unless a captial letter is entered
 
@@ -58,18 +62,18 @@ set smartcase         " Unless a captial letter is entered
 nnoremap / /\v
 nnoremap ? ?\v
 
-let mapleader = "\<space>"
-let maplocalleader = "\<space>"
+" let mapleader="\<Space>"
+let mapleader='<Space>'
 
 " Quickly open init.vim
-nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <Leader>ev :split $MYVIMRC<CR>
 " Quickly source init.vim
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 augroup GeneralPreferences
     autocmd!
     " Display relative line numbers from current absolute line number
-    autocmd BufNewFile,BufRead * if &buftype != 'terminal' | set number relativenumber | endif
+    autocmd BufRead * if &buftype != 'terminal' | set number relativenumber | endif
 augroup END
 
 augroup TerminalPreferences
@@ -97,7 +101,7 @@ if has('nvim')
     " Send Esc in terminal mode by prefixing
     tnoremap <C-v><Esc> <Esc>
     " Highlight terminal cursor position when in normal mode
-    highlight! TermCursorNC guibg=green guifg=white ctermbg=green ctermfg=white
+    highlight! TermCursorNC guibg=lightgreen guifg=white ctermbg=lightgreen ctermfg=white
 endif
 
 " Vim file settings
