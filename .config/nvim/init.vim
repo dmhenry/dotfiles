@@ -25,11 +25,14 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'luochen1990/rainbow'
 " Code completion engine
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+" Dim inactive windows
+Plug 'blueyed/vim-diminactive'
 
 call plug#end()
 
 " Enable rainbow parentheses
 let g:rainbow_active=1
+" let g:diminactive_enable_focus=1
 " }}}
 
 "------------------------------------------------------------------------------
@@ -49,8 +52,6 @@ set colorcolumn=80    " Right gutter color
 set splitbelow
 set splitright
 
-" Change right margin column color
-highlight ColorColumn ctermbg=darkgray
 colorscheme dracula
 
 set termguicolors     " 24-bit color from terminal 
@@ -62,8 +63,7 @@ set smartcase         " Unless a captial letter is entered
 nnoremap / /\v
 nnoremap ? ?\v
 
-" let mapleader="\<Space>"
-let mapleader='<Space>'
+let mapleader="\<Space>"
 
 " Quickly open init.vim
 nnoremap <Leader>ev :split $MYVIMRC<CR>
@@ -79,8 +79,8 @@ augroup END
 augroup TerminalPreferences
     autocmd!
     autocmd TermOpen * setlocal nonumber norelativenumber
-    " autocmd InsertEnter * if &buftype ==? 'terminal' | echom "Insert in Terminal" | endif
-    autocmd InsertEnter * echom "InsertEnter"
+    " Start terminal in insert mode
+    " autocmd BufEnter term://* startinsert
 augroup END
 
 " Effortless window navigation
@@ -88,6 +88,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" Break out of terminal window even when in insert mode
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " Esc clears last search highlight in normal mode
 nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
@@ -96,12 +101,19 @@ nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 if has('nvim')
+    if executable('nvr')
+        " Use existing Neovim process when $VISUAL is invoked from Neovim terminal
+        " Open $VISUAL in existing Neovim process
+        let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    endif
+
     " Esc switches from terminal mode back to normal mode
     tnoremap <Esc> <C-\><C-n>
     " Send Esc in terminal mode by prefixing
     tnoremap <C-v><Esc> <Esc>
-    " Highlight terminal cursor position when in normal mode
-    highlight! TermCursorNC guibg=lightgreen guifg=white ctermbg=lightgreen ctermfg=white
+
+    " Highlight terminal cursor position when in normal mode (green)
+    highlight! TermCursorNC guibg=#50FA7B guifg=white ctermbg=lightgreen ctermfg=white
 endif
 
 " Vim file settings
