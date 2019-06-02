@@ -14,20 +14,24 @@ export GOPATH="$HOME/go"
 export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:$HOME/bin:$PATH:/usr/local/sbin:$PYENV_ROOT/bin:$GOPATH/bin:$GOROOT/bin"
 export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export SHELL=/usr/local/bin/bash
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
 
 alias ll="command ls --color=auto -alF $@"
 
 # Homebrew
-if type brew > /dev/null 2>&1; then
+if [ -x "$(command -v brew)" ]; then
     for completion_file in $(/usr/local/bin/brew --prefix)/etc/bash_completion.d/*; do
         source "$completion_file"
     done
 fi
 
-# NeoVim
-if type nvim > /dev/null 2>&1; then
+# Neovim
+if [ -x "$(command -v nvim)" ]; then
     export VISUAL=/usr/local/bin/nvim
     export EDITOR="$VISUAL"
     export VIMCONFIG="$HOME/.config/nvim"
@@ -35,16 +39,25 @@ if type nvim > /dev/null 2>&1; then
     export MYVIMRC="$VIMCONFIG/init.vim"
     alias vi=nvim
     alias vim=nvim
+
+    if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+        alias nvim='echo "No nesting!"'
+    fi
 fi
 
 # Git
 export GIT_PS1_SHOWDIRTYSTATE=1
-PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    # Change bash prompt when running Neovim's terminal emulator
+    PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]» '
+else
+    PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]\$ '
+fi
 
 # Use special bare repo for dotfiles in git. See:
 #   https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 #   https://news.ycombinator.com/item?id=11071754
-if type git > /dev/null 2>&1; then
+if [ -x "$(command -v git)" ]; then
     alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
@@ -58,11 +71,8 @@ if type ipython > /dev/null 2>&1; then
 fi
 
 # Initiate pyenv; set compiler & linker flags
-if command -v pyenv 1>/dev/null 2>&1; then
+if [ -x "$(command -v pyenv)" ]; then
     eval "$(pyenv init -)"
-    export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
-    export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
-    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
 fi
 
 # pull in Enterprise stuff
