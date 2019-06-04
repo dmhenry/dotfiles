@@ -107,11 +107,6 @@ if has('nvim')
         let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
     endif
 
-    " Esc switches from terminal mode back to normal mode
-    tnoremap <Esc> <C-\><C-n>
-    " Send Esc in terminal mode by prefixing
-    tnoremap <C-v><Esc> <Esc>
-
     " Highlight terminal cursor position when in normal mode (green)
     highlight! TermCursorNC guibg=#50FA7B guifg=white ctermbg=lightgreen ctermfg=white
 endif
