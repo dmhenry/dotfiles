@@ -1,15 +1,14 @@
-$if bash
-    # Readline vi mode
-    set editing-mode vi
+# Readline vi mode
+set editing-mode vi
 
-    # prompt reflects vi mode
-    set show-mode-in-prompt on
+# Prompt reflects vi mode
+set show-mode-in-prompt on
 
-    $if term=xterm
-        set vi-ins-mode-string \1\e[6 q\2
-        set vi-cmd-mode-string \1\e[2 q\2
-    $endif
-
-    # reduce wait time duration for ambiguous key, e.g., <Esc>
-    set keyseq-timeout 50
+# Change cursor shape for each mode
+$if term=xterm
+    set vi-ins-mode-string \1\e[6 q\2
+    set vi-cmd-mode-string \1\e[2 q\2
 $endif
+
+# Reduce wait time duration for ambiguous key, e.g., <Esc>
+set keyseq-timeout 50
