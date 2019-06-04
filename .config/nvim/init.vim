@@ -18,11 +18,9 @@ Plug 'tpope/vim-unimpaired'
 " Repeat support for plugins
 Plug 'tpope/vim-repeat'
 " Dracula colorscheme
-Plug 'dracula/vim', { 'as': 'dracula' }
-" Solarized8 colorscheme
-Plug 'lifepillar/vim-solarized8'
+Plug 'dracula/vim', { 'as': 'vim-dracula' }
 " Rainbow parentheses
-Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow', { 'as': 'vim-rainbow' }
 " Code completion engine
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 " Dim inactive windows
@@ -45,7 +43,6 @@ set softtabstop=4     " Delete expanded spaces as tabs
 set expandtab         " Expand tabs to spaces
 set hidden            " Allows modified buffers to be hidden w/o saving
 set mouse=a           " Enable mouse for all modes
-set history=200       " More command line and search history
 set colorcolumn=80    " Right gutter color
 
 " Open vertical splits to the right, horizontal splits below
@@ -79,8 +76,6 @@ augroup END
 augroup TerminalPreferences
     autocmd!
     autocmd TermOpen * setlocal nonumber norelativenumber
-    " Start terminal in insert mode
-    " autocmd BufEnter term://* startinsert
 augroup END
 
 " Effortless window navigation
