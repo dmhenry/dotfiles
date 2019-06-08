@@ -17,6 +17,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 " Repeat support for plugins
 Plug 'tpope/vim-repeat'
+" Automatic session handling
+Plug 'tpope/vim-obsession', { 'on': 'Obsession' }
 " Dracula colorscheme
 Plug 'dracula/vim', { 'as': 'vim-dracula' }
 " Rainbow parentheses
