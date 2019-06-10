@@ -35,6 +35,8 @@ if exists('*minpac#init')
     call minpac#add('luochen1990/rainbow', {'name': 'vim-rainbow'})
     " Dim inactive windows
     call minpac#add('blueyed/vim-diminactive')
+    " Code completion engine
+    call minpac#add('Valloric/YouCompleteMe', {'name': 'vim-ycm', 'do': '!./install.py --all'})
 endif
 
 " Plugin settings here.
