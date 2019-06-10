@@ -3,36 +3,57 @@
 "------------------------------------------------------------------------------
 " {{{
 
-" Install vim-plug
-" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" For a paranoia.
+" Normally `:set nocp` is not needed, because it is done automatically
+" when .vimrc is found.
+if &compatible
+  " `:set nocp` has many side effects. Therefore this should be done
+  " only when 'compatible' is set.
+  set nocompatible
+endif
 
-call plug#begin('~/.local/share/nvim/plugged')
+if exists('*minpac#init')
+    " minpac is loaded.
+    call minpac#init()
+    call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" Easily manipulate pairs of parentheses, brackets, quotes, etc.
-Plug 'tpope/vim-surround'
-" Toggle line comments
-Plug 'tpope/vim-commentary'
-" Pairs of handy bracket mappings
-Plug 'tpope/vim-unimpaired'
-" Repeat support for plugins
-Plug 'tpope/vim-repeat'
-" Automatic session handling
-Plug 'tpope/vim-obsession', { 'on': 'Obsession' }
-" Dracula colorscheme
-Plug 'dracula/vim', { 'as': 'vim-dracula' }
-" Rainbow parentheses
-Plug 'luochen1990/rainbow', { 'as': 'vim-rainbow' }
-" Code completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-" Dim inactive windows
-Plug 'blueyed/vim-diminactive'
+    " Additional plugins here.
+    
+    " Easily manipulate pairs of parentheses, brackets, quotes, etc.
+    call minpac#add('tpope/vim-surround')
+    " Toggle line comments
+    call minpac#add('tpope/vim-commentary')
+    " Pairs of handy bracket mappings
+    call minpac#add('tpope/vim-unimpaired')
+    " Repeat support for plugins
+    call minpac#add('tpope/vim-repeat')
+    " Automatic session handling
+    call minpac#add('tpope/vim-obsession')
+    " Dracula colorscheme
+    call minpac#add('dracula/vim', {'name': 'vim-dracula', 'rev': 'bfbc3cadbd142e74d3b92e63f1de8711261015a4', 'frozen': 1})
+    " Solarized8 colorscheme
+    call minpac#add('lifepillar/vim-solarized8')
+    " Rainbow parentheses
+    call minpac#add('luochen1990/rainbow', {'name': 'vim-rainbow'})
+    " Code completion engine
+    " call minpac#add('Valloric/YouCompleteMe', {'do': './install.py --all'})
+    " Dim inactive windows
+    call minpac#add('blueyed/vim-diminactive')
+endif
 
-call plug#end()
+" Plugin settings here.
 
 " Enable rainbow parentheses
 let g:rainbow_active=1
-" let g:diminactive_enable_focus=1
+" Use dracula
+colorscheme dracula
+
+" Define user commands for updating/cleaning the plugins.
+" Each of them loads minpac, reloads .vimrc to register the
+" information of plugins, then performs the task.
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 " }}}
 
 "------------------------------------------------------------------------------
@@ -50,8 +71,6 @@ set colorcolumn=80    " Right gutter color
 " Open vertical splits to the right, horizontal splits below
 set splitbelow
 set splitright
-
-colorscheme dracula
 
 set termguicolors     " 24-bit color from terminal 
 
@@ -113,3 +132,4 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
