@@ -30,19 +30,17 @@ if exists('*minpac#init')
     " Automatic session handling
     call minpac#add('tpope/vim-obsession')
     " Dracula colorscheme
-    call minpac#add('dracula/vim', {'name': 'vim-dracula', 'rev': 'bfbc3cadbd142e74d3b92e63f1de8711261015a4', 'frozen': 1})
-    " Solarized8 colorscheme
-    call minpac#add('lifepillar/vim-solarized8')
+    call minpac#add('dracula/vim', {'name': 'vim-dracula'})
     " Rainbow parentheses
     call minpac#add('luochen1990/rainbow', {'name': 'vim-rainbow'})
-    " Code completion engine
-    " call minpac#add('Valloric/YouCompleteMe', {'do': './install.py --all'})
     " Dim inactive windows
     call minpac#add('blueyed/vim-diminactive')
 endif
 
 " Plugin settings here.
 
+" Explicityly load all <dir>/pack/<package_name>/start/<plugin_name>
+packloadall
 " Enable rainbow parentheses
 let g:rainbow_active=1
 " Use dracula
