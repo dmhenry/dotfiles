@@ -1,7 +1,7 @@
 "------------------------------------------------------------------------------
 " Plugin Configuration
 "------------------------------------------------------------------------------
-" {{{
+:": {{{
 
 " For a paranoia.
 " Normally `:set nocp` is not needed, because it is done automatically
@@ -30,8 +30,6 @@ if exists('*minpac#init')
     " Automatic session handling
     call minpac#add('tpope/vim-obsession')
     " Git wrapper
-    call minpac#add('tpope/vim-fugitive')
-    " Dracula colorscheme
     call minpac#add('dracula/vim', {'name': 'vim-dracula'})
     " Rainbow parentheses
     call minpac#add('luochen1990/rainbow', {'name': 'vim-rainbow'})
