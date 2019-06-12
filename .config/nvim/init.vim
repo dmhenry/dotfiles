@@ -47,13 +47,15 @@ packloadall
 let g:rainbow_active=1
 " Use dracula
 colorscheme dracula
+" Add ObsessionStatus to statusline
+" set statusline+=%{ObsessionStatus()} 
 
 " Define user commands for updating/cleaning the plugins.
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+command! PackUpdate packadd minpac | source ${MYVIMRC} | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  packadd minpac | source ${MYVIMRC} | call minpac#clean()
+command! PackStatus packadd minpac | source ${MYVIMRC} | call minpac#status()
 " }}}
 
 "------------------------------------------------------------------------------
@@ -77,6 +79,15 @@ set termguicolors     " 24-bit color from terminal
 set ignorecase        " Ignore case when searching
 set smartcase         " Unless a captial letter is entered
 
+set undofile          " Persistent undo between sessions
+if !has('nvim')
+    set undodir=~/.vim/undo
+endif
+if !isdirectory(&undodir)
+    echom 'Creating undo directory: ' . &undodir
+    call mkdir(&undodir, 'p')
+endif
+
 " Search in 'very magic' regex mode by default
 nnoremap / /\v
 nnoremap ? ?\v
@@ -84,20 +95,9 @@ nnoremap ? ?\v
 let mapleader="\<Space>"
 
 " Quickly open init.vim
-nnoremap <Leader>ev :split $MYVIMRC<CR>
+nnoremap <Leader>ev :split ${MYVIMRC}<CR>
 " Quickly source init.vim
-nnoremap <Leader>sv :source $MYVIMRC<CR>
-
-augroup GeneralPreferences
-    autocmd!
-    " Display relative line numbers from current absolute line number
-    autocmd BufRead * if &buftype != 'terminal' | set number relativenumber | endif
-augroup END
-
-augroup TerminalPreferences
-    autocmd!
-    autocmd TermOpen * setlocal nonumber norelativenumber
-augroup END
+nnoremap <Leader>sv :source ${MYVIMRC}<CR>
 
 " Effortless window navigation
 nnoremap <C-h> <C-w>h
@@ -127,9 +127,14 @@ if has('nvim')
     highlight! TermCursorNC guibg=#50FA7B guifg=white ctermbg=lightgreen ctermfg=white
 endif
 
-" Vim file settings
-augroup filetype_vim
+augroup vimrc
     autocmd!
+    " Disable undofile for files in /tmp
+    autocmd BufWritePre /tmp/* setlocal noundofile
+    " Display relative line numbers from current absolute line number
+    autocmd BufRead * if &buftype != 'terminal' | set number relativenumber | endif
+    " ... except in terminal
+    autocmd TermOpen * setlocal nonumber norelativenumber
+    " Vim file settings
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-
