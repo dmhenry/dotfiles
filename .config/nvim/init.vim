@@ -29,6 +29,8 @@ if exists('*minpac#init')
     call minpac#add('tpope/vim-repeat')
     " Automatic session handling
     call minpac#add('tpope/vim-obsession')
+    " Git wrapper
+    call minpac#add('tpope/vim-fugitive')
     " Dracula colorscheme
     call minpac#add('dracula/vim', {'name': 'vim-dracula'})
     " Rainbow parentheses
@@ -84,7 +86,7 @@ if !has('nvim')
     set undodir=~/.vim/undo
 endif
 if !isdirectory(&undodir)
-    echom 'Creating undo directory: ' . &undodir
+    echom 'Creating undo directory at ' . &undodir
     call mkdir(&undodir, 'p')
 endif
 
