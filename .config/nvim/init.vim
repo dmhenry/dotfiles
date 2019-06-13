@@ -29,24 +29,25 @@ if exists('*minpac#init')
     call minpac#add('tpope/vim-repeat')
     " Automatic session handling
     call minpac#add('tpope/vim-obsession')
-    " Git wrapper
+    " Dracula theme 
     call minpac#add('dracula/vim', {'name': 'vim-dracula'})
+    " Visual Studio Code Dark+-inspired theme 
+    call minpac#add('tomasiser/vim-code-dark')
     " Rainbow parentheses
     call minpac#add('luochen1990/rainbow', {'name': 'vim-rainbow'})
     " Dim inactive windows
     call minpac#add('blueyed/vim-diminactive')
     " Code completion engine
-    call minpac#add('Valloric/YouCompleteMe', {'name': 'vim-ycm', 'do': '!./install.py --all'})
 endif
 
 " Plugin settings here.
 
 " Explicityly load all <dir>/pack/<package_name>/start/<plugin_name>
 packloadall
+" Use codedark scheme
+colorscheme codedark
 " Enable rainbow parentheses
-let g:rainbow_active=1
-" Use dracula
-colorscheme dracula
+let g:rainbow_active = 1
 " Add ObsessionStatus to statusline
 " set statusline+=%{ObsessionStatus()} 
 
@@ -67,7 +68,7 @@ set shiftwidth=4      " Number of spaces to indent/outdent using > or <
 set softtabstop=4     " Delete expanded spaces as tabs
 set expandtab         " Expand tabs to spaces
 set hidden            " Allows modified buffers to be hidden w/o saving
-set mouse=a           " Enable mouse for all modes
+set mouse=a           " Enable mouse for all moides
 set colorcolumn=80    " Right gutter color
 
 " Open vertical splits to the right, horizontal splits below
@@ -87,10 +88,6 @@ if !isdirectory(&undodir)
     echom 'Creating undo directory at ' . &undodir
     call mkdir(&undodir, 'p')
 endif
-
-" Search in 'very magic' regex mode by default
-nnoremap / /\v
-nnoremap ? ?\v
 
 let mapleader="\<Space>"
 
