@@ -33,8 +33,6 @@ if exists('*minpac#init')
     call minpac#add('dracula/vim', {'name': 'vim-dracula'})
     " Visual Studio Code Dark+-inspired theme 
     call minpac#add('tomasiser/vim-code-dark')
-    " Rainbow parentheses
-    call minpac#add('luochen1990/rainbow', {'name': 'vim-rainbow'})
     " Dim inactive windows
     call minpac#add('blueyed/vim-diminactive')
     " Code completion engine
@@ -46,8 +44,6 @@ endif
 packloadall
 " Use codedark scheme
 colorscheme codedark
-" Enable rainbow parentheses
-let g:rainbow_active = 1
 " Add ObsessionStatus to statusline
 " set statusline+=%{ObsessionStatus()} 
 
