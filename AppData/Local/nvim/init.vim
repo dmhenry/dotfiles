@@ -50,9 +50,9 @@ colorscheme codedark
 " Define user commands for updating/cleaning the plugins.
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
-command! PackUpdate packadd minpac | source ${MYVIMRC} | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  packadd minpac | source ${MYVIMRC} | call minpac#clean()
-command! PackStatus packadd minpac | source ${MYVIMRC} | call minpac#status()
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 " }}}
 
 "------------------------------------------------------------------------------
@@ -88,9 +88,9 @@ endif
 let mapleader="\<Space>"
 
 " Quickly open init.vim
-nnoremap <Leader>ev :split ${MYVIMRC}<CR>
+nnoremap <Leader>ev :split $MYVIMRC<CR>
 " Quickly source init.vim
-nnoremap <Leader>sv :source ${MYVIMRC}<CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 " Effortless window navigation
 nnoremap <C-h> <C-w>h
