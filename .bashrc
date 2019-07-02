@@ -2,6 +2,13 @@ set -o noclobber      # do not overwrite existing files with >
 shopt -s autocd       # cd into paths on the command line 
 shopt -s cdable_vars  # treat non-directory cd arguments as variables
 
+export XDG_CONFIG_HOME=$HOME/Local
+mkdir -p $XDG_CONFIG_HOME
+export XDG_CACHE_HOME=$HOME/Local
+mkdir -p $XDG_CACHE_HOME
+export XDG_DATA_HOME=$HOME/Local/Temp
+mkdir -p $XDG_DATA_HOME
+
 # Neovim
 if [ -x "$(command -v nvim)" ]; then
     export VISUAL=/c/tools/neovim/Neovim/bin/nvim-qt.exe
