@@ -1,27 +1,52 @@
+# macOS environment
+function mac_os_env {
+    export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+    export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
+    export M2_HOME=/usr/local/opt/maven/libexec
+    export GRADLE_HOME=/usr/local/opt/gradle/libexec
+    export GROOVY_HOME=/usr/local/opt/groovy/libexec
+    export CATALINA_HOME=/usr/local/opt/tomcat/libexec
+    export GOROOT=/usr/local/opt/go/libexec
+    export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
+    export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
+    export SHELL=/usr/local/bin/bash
+
+    export LDFLAGS="${LDFLAGS} -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
+}
+
+# XDG base directories:
+#   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+#   https://wiki.archlinux.org/index.php/XDG_Base_Directory
+function xdg_base_dirs {
+    export XDG_CONFIG_HOME=$HOME/.config
+    mkdir -p $XDG_CONFIG_HOME
+    export XDG_CACHE_HOME=$HOME/.cache
+    mkdir -p $XDG_CACHE_HOME
+    export XDG_DATA_HOME=$HOME/.local/share
+    mkdir -p $XDG_DATA_HOME
+}
+
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+    mac_os_env
+else
+    echo "Unknown OS..."
+fi
+
 set -o noclobber      # do not overwrite existing files with >
 shopt -s autocd       # cd into paths on the command line 
 shopt -s cdable_vars  # treat non-directory cd arguments as variables
 
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
-export M2_HOME=/usr/local/opt/maven/libexec
-export GRADLE_HOME=/usr/local/opt/gradle/libexec
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
-export CATALINA_HOME=/usr/local/opt/tomcat/libexec
-export PYENV_ROOT="$HOME/.pyenv"
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH="$HOME/go"
-export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:$HOME/bin:$PATH:/usr/local/sbin:$PYENV_ROOT/bin:$GOPATH/bin:$GOROOT/bin"
-export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
-export SHELL=/usr/local/bin/bash
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-
-export LDFLAGS="$LDFLAGS -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
-export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
-export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
-
 alias ll="command ls --color=auto -alF $@"
+
+export VISUAL=vim
+export EDITOR="${VISUAL}"
+export PYENV_ROOT="${HOME}/.pyenv"
+export GOPATH="${HOME}/go"
+export PATH="${PATH}:${PYENV_ROOT}/bin:${GOPATH}/bin:${GOROOT}/bin"
+
+xdg_base_dirs
 
 # Homebrew
 if [ -x "$(command -v brew)" ]; then
@@ -32,22 +57,26 @@ fi
 
 # Neovim
 if [ -x "$(command -v nvim)" ]; then
-    export VISUAL=/usr/local/bin/nvim
-    export EDITOR="$VISUAL"
-    export VIMCONFIG="$HOME/.config/nvim"
-    export VIMDATA="$HOME/.local/share/nvim"
-    export MYVIMRC="$VIMCONFIG/init.vim"
+    export VISUAL=nvim
+    export EDITOR="${VISUAL}"
+    export VIMCONFIG="${HOME}/.config/nvim"
+    export VIMDATA="${HOME}/.local/share/nvim"
+    export MYVIMRC="${VIMCONFIG}/init.vim"
     alias vi=nvim
     alias vim=nvim
 
-    if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-        alias nvim='echo "No nesting!"'
+    if [ -n "${NVIM_LISTEN_ADDRESS}" ]; then
+        if [ -x "$(command -v nvr)" ]; then
+            alias nvim=nvr
+        else
+            alias nvim='echo "No nesting!"'
+        fi
     fi
 fi
 
 # Git
 export GIT_PS1_SHOWDIRTYSTATE=1
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+if [ -n "${NVIM_LISTEN_ADDRESS}" ]; then
     # Change bash prompt when running Neovim's terminal emulator
     PS1='[\u@'"$(scutil --get LocalHostName)"' \W$(__git_ps1 " (%s)")]» '
 else
@@ -62,12 +91,12 @@ if [ -x "$(command -v git)" ]; then
 fi
 
 # My environment variables
-export dev="$HOME/Development"
-export sicp="$dev/SICP/sicp/ch1"
+export dev="${HOME}/Development"
+export sicp="${dev}/SICP/sicp/ch1"
 
 # IPython
 if type ipython > /dev/null 2>&1; then
-    export IPYTHONCONFIG="$HOME/.ipython/profile_default/ipython_config.py"
+    export IPYTHONCONFIG="${HOME}/.ipython/profile_default/ipython_config.py"
 fi
 
 # Initiate pyenv; set compiler & linker flags
