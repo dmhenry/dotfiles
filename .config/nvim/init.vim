@@ -108,7 +108,7 @@ if !has('nvim') && !exists('g:loaded_neovim_defaults')
         " if !filereadable($HOME.'/.vimrc') && !filereadable($HOME.'/vim/vimrc')
             " !ln -s $XDG_DATA_HOME/vim/vimrc $XDG_DATA_HOME/nvim/init.vim
             " !ln -s ~/.vimrc $XDG_DATA_HOME/vim/vimrc
-        endif
+        " endif
 
     endif
     " }}}
