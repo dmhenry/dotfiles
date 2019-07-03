@@ -1,7 +1,7 @@
 "-----------------------------------------------------------------------------
 " Plugin Configuration
 "-----------------------------------------------------------------------------
-" {{
+" {{{
 
 " For a paranoia.
 " Normally `:set nocp` is not needed, because it is done automatically
