@@ -57,7 +57,7 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 " For details, see :help vim_diff or https://neovim.io/doc/user/vim_diff.html
 
-if !has('nvim') && !exists('g:loaded_neovim_defaults')
+if (!has('nvim') && !exists('g:loaded_neovim_defaults')) || &compatible
     " If vanilla Vim and Neovim defaults not already loaded
 
     echom "Loading Neovim defaults"
