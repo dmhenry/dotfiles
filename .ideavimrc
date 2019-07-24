@@ -1,9 +1,24 @@
-" Display relative line numbers from current absolute line number
-set number relativenumber
-" Emulates vim-surround plugin
-set surround
-" Ignore case when searching
+" print the line number in front of each line
+set number
+" show the line number relative to the line with the cursor
+set relativenumber
+" number of command-lines that are remembered
+set history=1000
+" message on the status line to show current mode
+set showmode
+" ignore case in search patterns
 set ignorecase
-" Unless a captial letter is entered
+" no ignore case when pattern is uppercase
 set smartcase
+" highlight matches with the last search pattern
+set hlsearch
 
+" emulates vim-surround plugin
+set surround
+"emulates vim-commentary plugin
+set commentary
+" emulates vim-multiple-cursors plugin
+set multiple-cursors 
+
+" esc clears last search highlight in normal mode
+nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
