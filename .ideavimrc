@@ -1,4 +1,9 @@
-" display relative line numbers from current absolute line number
+" Display relative line numbers from current absolute line number
 set number relativenumber
-" emulates vim-surround plugin
+" Emulates vim-surround plugin
 set surround
+" Ignore case when searching
+set ignorecase
+" Unless a captial letter is entered
+set smartcase
+
