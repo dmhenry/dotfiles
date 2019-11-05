@@ -1,38 +1,18 @@
 # macOS environment
-function mac_os_env {
-    export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-    export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
-    export M2_HOME=/usr/local/opt/maven/libexec
-    export GRADLE_HOME=/usr/local/opt/gradle/libexec
-    export GROOVY_HOME=/usr/local/opt/groovy/libexec
-    export CATALINA_HOME=/usr/local/opt/tomcat/libexec
-    export GOROOT=/usr/local/opt/go/libexec
-    export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
-    export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
-    export SHELL=/usr/local/bin/bash
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
+export M2_HOME=/usr/local/opt/maven/libexec
+export GRADLE_HOME=/usr/local/opt/gradle/libexec
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export CATALINA_HOME=/usr/local/opt/tomcat/libexec
+export GOROOT=/usr/local/opt/go/libexec
+export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:${HOME}/bin:${PATH}"
+export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
+export SHELL=/usr/local/bin/bash
 
-    export LDFLAGS="${LDFLAGS} -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
-    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
-    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
-}
-
-# XDG base directories:
-#   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-#   https://wiki.archlinux.org/index.php/XDG_Base_Directory
-function xdg_base_dirs {
-    export XDG_CONFIG_HOME=$HOME/.config
-    mkdir -p $XDG_CONFIG_HOME
-    export XDG_CACHE_HOME=$HOME/.cache
-    mkdir -p $XDG_CACHE_HOME
-    export XDG_DATA_HOME=$HOME/.local/share
-    mkdir -p $XDG_DATA_HOME
-}
-
-if [[ "${OSTYPE}" == "darwin"* ]]; then
-    mac_os_env
-else
-    echo "Unknown OS..."
-fi
+export LDFLAGS="${LDFLAGS} -L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/sqlite/lib/pkgconfig /usr/local/opt/zlib/lib/pkgconfig"
 
 set -o noclobber      # do not overwrite existing files with >
 shopt -s autocd       # cd into paths on the command line 
@@ -45,8 +25,6 @@ export EDITOR="${VISUAL}"
 export PYENV_ROOT="${HOME}/.pyenv"
 export GOPATH="${HOME}/go"
 export PATH="${PATH}:${PYENV_ROOT}/bin:${GOPATH}/bin:${GOROOT}/bin"
-
-xdg_base_dirs
 
 # Homebrew
 if [ -x "$(command -v brew)" ]; then
