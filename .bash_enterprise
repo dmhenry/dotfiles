@@ -6,6 +6,7 @@ export ep="$HOME/Enterprise/Development/Projects"
 export gbo="$ep/GlobalBookingOrchestration"
 export gbp="$ep/GlobalBookingPlatform"
 export gcs="$ep/GlobalContentService"
+export ags="$ep/AGS"
 
 export nma="$ep/NMA/national-mob-msi"
 export bff="$ep/NMO/national-mob-msi"
@@ -37,10 +38,11 @@ export eed="$gbo/enterprise-ehi-dto"
 export ecd="$gbo/enterprise-cros-dto"
 export emm="$gbo/enterprise-mob-msi"
 export gts="$gbo/gbo-test-scripts"
-export kam="$gbo/kong-api-manager"
 
 export gca="$gcs/gcs-content-api"
 
 export aec="$gbp/acs-e-cros"
 export aps="$gbp/acs-prod-status-tool"
 export acr="$gbp/cloud-resources"
+
+export kam="$ags/kong-api-manager"
