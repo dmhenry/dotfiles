@@ -1,0 +1,2 @@
+# Ignore this repo when cloning. See https://www.atlassian.com/git/tutorials/dotfiles
+.cfg
