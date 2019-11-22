@@ -3,10 +3,11 @@ export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addre
 
 # GBO repos
 export ep="$HOME/Enterprise/Development/Projects"
-export gbo="$ep/GlobalBookingOrchestration"
-export gbp="$ep/GlobalBookingPlatform"
-export gcs="$ep/GlobalContentService"
+export gbo="$ep/GBO"
+export gbp="$ep/GBP"
+export gcs="$ep/GCS"
 export ags="$ep/AGS"
+export met="$ep/MET"
 
 export nma="$ep/NMA/national-mob-msi"
 export bff="$ep/NMO/national-mob-msi"
@@ -46,3 +47,5 @@ export aps="$gbp/acs-prod-status-tool"
 export acr="$gbp/cloud-resources"
 
 export kam="$ags/kong-api-manager"
+
+export eff="$met/ehi-ff"
