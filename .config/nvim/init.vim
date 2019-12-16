@@ -71,6 +71,9 @@ set termguicolors     " 24-bit color from terminal
 set ignorecase        " Ignore case when searching
 set smartcase         " Unless a captial letter is entered
 
+set number            " Show lines numbers
+set relativenumber    " Relative to current line
+
 set undofile          " Persistent undo between sessions
 if !(empty(&undodir) || isdirectory(&undodir))
     call mkdir(&undodir, 'p')
@@ -115,8 +118,6 @@ augroup vimrc
     autocmd!
     " Disable undofile for files in /tmp
     autocmd BufWritePre /tmp/* setlocal noundofile
-    " Display relative line numbers from current absolute line number
-    autocmd BufRead * if &buftype != 'terminal' | set number relativenumber | endif
     " ... except in terminal
     if has('nvim')
         autocmd TermOpen * setlocal nonumber norelativenumber
