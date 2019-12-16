@@ -1,9 +1,5 @@
 # macOS environment
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
-export M2_HOME="$(/usr/local/bin/brew --prefix coreutils)/opt/maven/libexec"
-export GRADLE_HOME="$(/usr/local/bin/brew --prefix)/opt/gradle/libexec"
-export GROOVY_HOME="$(/usr/local/bin/brew --prefix)/opt/groovy/libexec"
 export CATALINA_HOME="$(/usr/local/bin/brew --prefix)/opt/tomcat/libexec"
 export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
 export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
@@ -18,12 +14,9 @@ alias ll="command ls --color=auto -ahlF $@"
 export VISUAL=vim
 export EDITOR="${VISUAL}"
 
-# Homebrew
-if [ -x "$(command -v brew)" ]; then
-    for completion_file in $(/usr/local/bin/brew --prefix)/etc/bash_completion.d/*; do
-        source "$completion_file"
-    done
-fi
+# Bash completion
+[[ -r "$(/usr/local/bin/brew --prefix)/etc/profile.d/bash_completion.sh" ]] &&
+    source "$(/usr/local/bin/brew --prefix)/etc/profile.d/bash_completion.sh"
 
 # Neovim
 if [ -x "$(command -v nvim)" ]; then
@@ -53,4 +46,4 @@ export dev="${HOME}/Development"
 export sicp="${dev}/SICP/sicp/ch1"
 
 # pull in Enterprise stuff
-[[ -f ~/.bash_enterprise ]] && source ~/.bash_enterprise
+[[ -r ~/.bash_enterprise ]] && source ~/.bash_enterprise
