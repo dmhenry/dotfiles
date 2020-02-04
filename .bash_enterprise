@@ -2,18 +2,10 @@
 export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
 
 # GBO repos
-export edev="$HOME/Enterprise/Development"
-export eproj="$edev/Projects"
-export ebin="$edev/bin"
-export gbo="$HOME/Enterprise/GlobalBookingOrchestration/git"
-export gbp="$eproj/GBP"
-export gcs="$eproj/GCS"
-export ags="$eproj/AGS"
-export fo="$eproj/FO"
+export ep="$HOME/Enterprise"
+export ebin="$ep/bin"
 
-export nma="$eproj/NMA/national-mob-msi"
-export bff="$eproj/NMO/national-mob-msi"
-
+export gbo="$ep/GlobalBookingOrchestration/git"
 export gr="$gbo/gbo-rental"
 export gp="$gbo/gbo-profile"
 export gl="$gbo/gbo-location"
@@ -42,12 +34,16 @@ export ecd="$gbo/enterprise-cros-dto"
 export emm="$gbo/enterprise-mob-msi"
 export gts="$gbo/gbo-test-scripts"
 
+export gcs="$ep/GlobalConfigurationService/git"
 export gca="$gcs/gcs-content-api"
 
+export gbp="$ep/GlobalBookingPlatform/git"
 export aec="$gbp/acs-e-cros"
 export aps="$gbp/acs-prod-status-tool"
 export acr="$gbp/cloud-resources"
 
+export ags="$ep/ApplicationGatewayServices/git"
 export kam="$ags/kong-api-manager"
 
-export eff="$fo/ehi-ff"
+export met="$ep/FareOffice/MyEHTrip/git"
+export rf="$ep/FareOffice/RentalFront/git"
