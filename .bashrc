@@ -1,9 +1,9 @@
 # macOS environment
 export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
-export CATALINA_HOME="$(/usr/local/bin/brew --prefix)/opt/tomcat/libexec"
-export PATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
-export MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
-export SHELL=/usr/local/bin/bash
+export CATALINA_HOME="$(brew --prefix)/opt/tomcat/libexec"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
+export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
+export SHELL="$(brew --prefix)/bin/bash"
 
 set -o noclobber      # do not overwrite existing files with >
 shopt -s autocd       # cd into paths on the command line 
@@ -15,8 +15,10 @@ export VISUAL=vim
 export EDITOR="${VISUAL}"
 
 # Bash completion
-[[ -r "$(/usr/local/bin/brew --prefix)/etc/profile.d/bash_completion.sh" ]] &&
-    source "$(/usr/local/bin/brew --prefix)/etc/profile.d/bash_completion.sh"
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] &&
+    source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+[[ -f "$(brew --prefix)/etc/bash_completion" ]] &&
+    source "$(brew --prefix)/etc/bash_completion"
 
 # Neovim
 if [ -x "$(command -v nvim)" ]; then
