@@ -2,8 +2,7 @@
 export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
 
 # GBO repos
-export ep="$HOME/Enterprise"
-export ebin="$ep/bin"
+export ep="$HOME/Enterprise/Projects"
 
 export gbo="$ep/GlobalBookingOrchestration/git"
 export gr="$gbo/gbo-rental"
@@ -45,5 +44,5 @@ export acr="$gbp/cloud-resources"
 export ags="$ep/ApplicationGatewayServices/git"
 export kam="$ags/kong-api-manager"
 
-export met="$ep/FareOffice/MyEHTrip/git"
-export rf="$ep/FareOffice/RentalFront/git"
+export met="$ep/MyEHTrip/git"
+export rf="$ep/RentalFront/git"
