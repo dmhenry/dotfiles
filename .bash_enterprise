@@ -2,9 +2,9 @@
 export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
 
 # GBO repos
-export ep="$HOME/Enterprise/Projects"
+export ep="$HOME/enterprise/development/projects"
 
-export gbo="$ep/GlobalBookingOrchestration/git"
+export gbo="$ed/gbo/git"
 export gr="$gbo/gbo-rental"
 export gp="$gbo/gbo-profile"
 export gl="$gbo/gbo-location"
@@ -33,16 +33,18 @@ export ecd="$gbo/enterprise-cros-dto"
 export emm="$gbo/enterprise-mob-msi"
 export gts="$gbo/gbo-test-scripts"
 
-export gcs="$ep/GlobalConfigurationService/git"
+export gcs="$ep/gcs/git"
 export gca="$gcs/gcs-content-api"
 
-export gbp="$ep/GlobalBookingPlatform/git"
+export gbp="$ep/gbp/git"
 export aec="$gbp/acs-e-cros"
 export aps="$gbp/acs-prod-status-tool"
 export acr="$gbp/cloud-resources"
 
-export ags="$ep/ApplicationGatewayServices/git"
+export ags="$ep/ags/git"
 export kam="$ags/kong-api-manager"
 
-export met="$ep/MyEHTrip/git"
-export rf="$ep/RentalFront/git"
+export met="$ep/eff/git"
+export rf="$ep/rf/git"
+
+export RENTALFRONT_MARIADB_PORT=10310

@@ -31,8 +31,6 @@ if exists('*minpac#init')
     call minpac#add('tpope/vim-obsession')
     " Visual Studio Code Dark+-inspired theme 
     call minpac#add('tomasiser/vim-code-dark')
-    " Dim inactive windows
-    call minpac#add('blueyed/vim-diminactive')
 endif
 
 " Plugin settings here.

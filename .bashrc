@@ -44,8 +44,8 @@ if [ -x "$(command -v git)" ]; then
 fi
 
 # My environment variables
-export dev="${HOME}/Development"
-export sicp="${dev}/SICP/sicp/ch1"
+export dev="${HOME}/development"
+export sicp="${dev}/sicp/sicp/ch1"
 
 # pull in Enterprise stuff
 [[ -r ~/.bash_enterprise ]] && source ~/.bash_enterprise
