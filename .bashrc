@@ -1,6 +1,3 @@
-# macOS environment
-export _JAVA_OPTIONS='-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false'
-export CATALINA_HOME="$(brew --prefix)/opt/tomcat/libexec"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
 export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
 export SHELL="$(brew --prefix)/bin/bash"
@@ -17,7 +14,7 @@ export EDITOR="${VISUAL}"
 # Bash completion
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] &&
     source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-[[ -f "$(brew --prefix)/etc/bash_completion" ]] &&
+[[ -r "$(brew --prefix)/etc/bash_completion" ]] &&
     source "$(brew --prefix)/etc/bash_completion"
 
 # Neovim
@@ -27,9 +24,6 @@ if [ -x "$(command -v nvim)" ]; then
     export VIMCONFIG="${HOME}/.config/nvim"
     export VIMDATA="${HOME}/.local/share/nvim"
     export MYVIMRC="${VIMCONFIG}/init.vim"
-
-    alias vi=nvim
-    alias vim=nvim
 fi
 
 # Git
@@ -43,9 +37,8 @@ if [ -x "$(command -v git)" ]; then
     alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
-# My environment variables
-export dev="${HOME}/development"
-export sicp="${dev}/sicp/sicp/ch1"
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-# pull in Enterprise stuff
-[[ -r ~/.bash_enterprise ]] && source ~/.bash_enterprise
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
