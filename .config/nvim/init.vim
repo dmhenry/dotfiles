@@ -12,7 +12,9 @@ if &compatible
   set nocompatible
 endif
 
-if exists('*minpac#init')
+function! PackInit() abort
+  packadd minpac
+  
   " minpac is loaded.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -29,25 +31,31 @@ if exists('*minpac#init')
   call minpac#add('tpope/vim-repeat')
   " Continuously updated session files
   call minpac#add('tpope/vim-obsession')
+  " LaTeX live preview
+  call minpac#add('xuhdev/vim-latex-live-preview')
   " Project code style
-  call minpac#add('editorconfig/editorconfig-vim')
-endif
+  " call minpac#add('editorconfig/editorconfig-vim')
+endfunction
 
 " Plugin settings here.
 
-" Add ObsessionStatus to statusline
-set statusline=%{ObsessionStatus()} 
+" tpope/vim-obsession:
+set statusline=%{ObsessionStatus()}             " Add ObsessionStatus to statusline
 
+" xuhdev/vim-latex-live-preview:
+autocmd Filetype tex setl updatetime=1          " Update TeX frequently
+let g:livepreview_previewer='open -a Preview'   " Use Preview as LaTeX PDF previewer
+
+" editorconfig/editorconfig-vim:
 " Show colorcolumn on lines that exceed the max line length
-let g:EditorConfig_max_line_indicator="exceeding"
+" let g:EditorConfig_max_line_indicator="exceeding"
 
 " Define user commands for updating/cleaning the plugins.
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', 
-            \{'do': 'call minpac#status()'})
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
+command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
+command! PackStatus packadd minpac  | call minpac#status()
 " }}}
 
 "-------------------------------------------------------------------------------
@@ -76,10 +84,10 @@ endif
 " nmap <Space> <Bslash>
 let mapleader="\<Space>"
 
-" Esc clears last search highlight in normal mode
-nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
-
 " Quickly open init.vim
 nnoremap <Leader>ev :split $MYVIMRC<CR>
 " Quickly source init.vim
 nnoremap <Leader>sv :source $MYVIMRC<CR>
+
+" Esc clears last search highlight in normal mode
+nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
