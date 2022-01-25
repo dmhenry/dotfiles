@@ -76,6 +76,8 @@ set smartcase         " Unless a captial letter is entered
 set number            " Show line numbers
 set relativenumber    " Relative to current line
 
+set foldmethod=marker " Automatically fold on {{{,}}}
+
 set undofile          " Persistent undo between sessions
 if !(empty(&undodir) || isdirectory(&undodir))
   call mkdir(&undodir, 'p')
