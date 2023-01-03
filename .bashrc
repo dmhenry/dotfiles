@@ -10,6 +10,7 @@ alias ll="command ls --color=auto -ahlF $@"
 
 export VISUAL=vim
 export EDITOR="${VISUAL}"
+export BASHRC="${HOME}/.bashrc"
 
 # Bash completion
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] &&
@@ -37,12 +38,14 @@ if [ -x "$(command -v git)" ]; then
     alias cfg='command git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
-# chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh      # look for .ruby-version files
-chruby ruby-3.1.0                           # set ruby version from ~/.rubies
+# Ruby
+if [ -x "$(command -v rbenv)" ]; then
+    eval "$(rbenv init - bash)"
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+eval "$(starship init bash)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
