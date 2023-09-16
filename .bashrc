@@ -1,3 +1,5 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:${HOME}/bin:${PATH}"
 export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
 export SHELL="$(brew --prefix)/bin/bash"
@@ -19,6 +21,8 @@ export BASHRC="${HOME}/.bashrc"
     source "$(brew --prefix)/etc/bash_completion"
 
 # Neovim
+# curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+#
 if [ -x "$(command -v nvim)" ]; then
     export VISUAL=nvim
     export EDITOR="${VISUAL}"
@@ -43,10 +47,12 @@ if [ -x "$(command -v rbenv)" ]; then
     eval "$(rbenv init - bash)"
 fi
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+if [ -x "$(command -v rbenv)" ]; then
+    eval "$(starship init bash)"
+fi
 
-eval "$(starship init bash)"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
