@@ -47,9 +47,16 @@ if [ -x "$(command -v rbenv)" ]; then
     eval "$(rbenv init - bash)"
 fi
 
-if [ -x "$(command -v rbenv)" ]; then
+if [ -x "$(command -v starship)" ]; then
     eval "$(starship init bash)"
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"

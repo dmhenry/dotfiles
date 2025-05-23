@@ -19,6 +19,8 @@ set surround
 set commentary
 " emulates vim-multiple-cursors plugin
 set multiple-cursors 
+" join commands will be handled by the IDE's "smart join" feature
+set ideajoin
 
 " esc clears last search highlight in normal mode
 nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
